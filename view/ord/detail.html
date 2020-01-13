@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Tmall</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/assets/store/i/favicon.ico" />
+    <meta name="apple-mobile-web-app-title" content="<?= $setting['store']['values']['name'] ?>" />
+    <link rel="stylesheet" href="/assets/store/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/assets/store/css/app.css" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_783249_t6knt0guzo.css">
+    <script src="/assets/store/js/jquery.min.js"></script>
+</head>
+
+<body data-type="">
+    <div class="am-g tpl-g">
+        <!-- 头部 -->
+        <header id="header" class="tpl-header">
+
+        </header>
+        <div id="left">
+
+        </div>
+        <!-- 内容区域 start -->
+        <div class="tpl-content-wrapper ">
+            <div class="row-content am-cf">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf" id="showDetails">
+                            <script id="detail-list-tpl" type="text/html">
+                        <div class="widget-body  am-margin-bottom-lg">
+                            <div class="am-u-sm-12">
+                                <ul class="order-detail-progress ">
+                                    <li>
+                                        <span>下单时间</span>
+                                        <div class="tip">{{da.createTime}}</div>
+                                    </li>
+                                    <li>
+                                        <span>付款</span>
+                                        <div class="tip">{{da.payTime}}</div>
+                                    </li>
+                                    <li>
+                                        <span>发货</span>
+                                        <div class="tip">{{da.deliveryTime}}</div>
+                                    </li>
+                                    <li>
+                                        <span>收货</span>
+                                        <div class="tip">{{da.receiptTime}}</div>
+                                    </li>
+                                    <li>
+                                        <span>完成</span>
+                                        <div class="tip">{{da.receiptTime}}</div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">基本信息</div>
+                            </div>
+                            <div class="am-scrollable-horizontal">
+                                <table class="regional-table am-table am-table-bordered am-table-centered
+                            am-text-nowrap am-margin-bottom-xs">
+                                    <tbody>
+                                    <tr>
+                                        <th>订单号</th>
+                                        <th>实付款</th>
+                                        <th>买家</th>
+                                        <th>交易状态</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{da.orderNo}}</td>
+                                        <td>
+                                            <p>{{da.totalPrice}}</p>
+                                            <p class="am-link-muted">(含运费：{{da.expressPrice}})</p>
+                                        </td>
+                                        <td>
+                                            <p>{{da.userId}}</p>
+                                            <p class="am-link-muted">(用户id：{{da.userId}})</p>
+                                        </td>
+                                        <td>
+                                            <p>付款状态：
+                                                {{if da.payStatus===10}}
+                                                <span class="am-badge">待付款</span>
+                                                {{else if da.payStatus==15}}
+                                                <span class="am-badge">支付中</span>
+                                                {{else if da.payStatus==20}}
+                                                <span class="am-badge
+                                                am-badge-success">已付款</span>
+                                                {{else if da.payStatus==25}}
+                                                <span class="am-badge">退款中</span>
+                                                {{else if da.payStatus==26}}
+                                                <span class="am-badge">退款异常</span>
+                                                {{else if da.payStatus==27}}
+                                                <span class="am-badge">退款失败</span>
+                                                {{else if da.payStatus==28}}
+                                                <span class="am-badge">退款驳回</span>
+                                                {{else if da.payStatus==29}}
+                                                <span class="am-badge
+                                                am-badge-succes">退款成功</span>
+                                                {{else}}
+                                                
+                                                <span class="am-badge">未知状态</span>
+                                                {{/if}}
+                                        </p>
+                                            <p>发货状态：
+                                                    {{if da.deliveryStatus===30}}
+                                                    <span class="am-badge">未发货</span>
+                                                    {{else}}
+                                                    <span class="am-badge
+                                                    am-badge-success">已发货</span>
+                                                    {{/if}}
+                                            </p>
+                                            <p>收货状态：
+                                                    {{if da.receiptStatus===50}}
+                                                    <span class="am-badge">待收货</span>
+                                                    {{else}}
+                                                    <span class="am-badge
+                                                    am-badge-success">已收货</span>
+                                                    {{/if}}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">商品信息</div>
+                            </div>
+                            <div class="am-scrollable-horizontal">
+                                <table class="regional-table am-table am-table-bordered am-table-centered
+                            am-text-nowrap am-margin-bottom-xs">
+                                    <tbody>
+                                    <tr>
+                                        <th>商品名称</th>
+                                        <th>商品编码</th>
+                                        <th>重量(Kg)</th>
+                                        <th>单价</th>
+                                        <th>购买数量</th>
+                                        <th>商品总价</th>
+                                    </tr>
+                                    {{each da.orderItemVoList data i}}
+                                    <tr>
+                                        <td class="goods-detail am-text-middle">
+                                            <div class="goods-image">
+                                                <img class="show-image" src="/file/show/{{data.imageId}}" width="120" height="120" alt="">
+                                            </div>
+                                            <div class="goods-info">
+                                                <p class="goods-title">{{data.goodsName}}</p>
+                                                <p class="goods-spec am-link-muted">{{data.goodsSpecName}}
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>--</td>
+                                        <td>{{data.goodsWeight}}</td>
+                                        <td>{{data.goodsPrice}}</td>
+                                        <td>{{data.totalNum}}</td>
+                                        <td>{{data.totalPrice}}</td>
+                                    </tr>
+                                    {{/each}}
+                                    <tr>
+                                        <td colspan="6" class="am-text-right">总计金额：{{da.totalPrice}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">收货信息</div>
+                            </div>
+                            <div class="am-scrollable-horizontal">
+                                <table class="regional-table am-table am-table-bordered am-table-centered
+                            am-text-nowrap am-margin-bottom-xs">
+                                    <tbody>
+                                    <tr>
+                                        <th>收货人</th>
+                                        <th>收货电话</th>
+                                        <th>收货地址</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{da.orderAddressVo.name}}</td>
+                                        <td>{{da.orderAddressVo.phone}}</td>
+                                        <td>
+                                            {{da.orderAddressVo.detail}} </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </script>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- 内容区域 end -->
+
+    </div>
+    <script src="/assets/layer/layer.js"></script>
+    <script src="/assets/store/js/jquery.form.min.js"></script>
+    <script src="/assets/store/js/amazeui.min.js"></script>
+    <script src="/assets/public/js/site-ajax.js"></script>
+    <script src="/assets/store/js/webuploader.html5only.js"></script>
+    <script src="/assets/store/js/art-template.js"></script>
+    <script src="/assets/store/js/app.js"></script>
+    <script src="/assets/store/js/file.library.js"></script>
+    <script>
+        var bodyConfig = {
+            active: 2,
+            bodyTitle: '订单管理',
+            bodyList: [{
+                title: '待发货',
+                active: false,
+                url: '/ord/index.html'
+            }, {
+                title: '待收货',
+                active: false,
+                url: '/ord/take.html'
+            }, {
+                title: '待付款',
+                active: false,
+                url: '/ord/pay.html'
+            }, {
+                title: '已完成',
+                active: false,
+                url: '/ord/finish.html'
+            }, {
+                title: '已取消',
+                active: false,
+                url: '/ord/cancel.html'
+            }, {
+                title: '全部订单',
+                active: false,
+                url: '/ord/all.html'
+            }]
+        }
+    </script>
+    <script src="/assets/store/js/common.js"></script>
+    <script src="/assets/order/detail.js"></script>
+</body>
+
+</html>

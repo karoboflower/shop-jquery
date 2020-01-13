@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Tmall</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="/assets/store/i/favicon.ico"/>
+    <meta name="apple-mobile-web-app-title" content="<?= $setting['store']['values']['name'] ?>"/>
+    <link rel="stylesheet" href="/assets/store/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/assets/store/css/app.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_783249_t6knt0guzo.css">
+    <script src="/assets/store/js/jquery.min.js"></script>
+</head>
+
+<body data-type="">
+<div class="am-g tpl-g">
+    <!-- 头部 -->
+    <header id="header" class="tpl-header">
+
+    </header >
+    <div id="left">
+
+    </div>
+    <!-- 内容区域 start -->
+    <div class="tpl-content-wrapper ">
+        <div class="row-content am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-cf">运费模板</div>
+                        </div>
+                        <div class="widget-body am-fr">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                <div class="am-form-group">
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <a class="am-btn am-btn-default am-btn-success am-radius" href="/setting/dispatch/add.html">
+                                                <span class="am-icon-plus"></span> 新增
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-u-sm-12">
+                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
+                                    <thead>
+                                    <tr>
+                                        <th>模板ID</th>
+                                        <th>模板名称</th>
+                                        <th>计费方式</th>
+                                        <th>排序</th>
+                                        <th>添加时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="dispatchDetails">
+
+                                    </tbody>
+                                    <!-- <tr>
+                                        <td class="am-text-middle">1</td>
+                                        <td class="am-text-middle">全国包邮</td>
+                                        <td class="am-text-middle">按件数</td>
+                                        <td class="am-text-middle">0</td>
+                                        <td class="am-text-middle">2018-06-25 21:09:08</td>
+                                        <td class="am-text-middle">
+                                            <div class="tpl-table-black-operation">
+                                                <a href="/setting/category/add.html">
+                                                    <i class="am-icon-pencil"></i> 编辑
+                                                </a>
+                                                <a href="javascript:;" class="item-delete tpl-table-black-operation-del" data-id="1">
+                                                    <i class="am-icon-trash"></i> 删除
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="am-text-middle">2</td>
+                                        <td class="am-text-middle">江浙沪包邮</td>
+                                        <td class="am-text-middle">按件数</td>
+                                        <td class="am-text-middle">0</td>
+                                        <td class="am-text-middle">2018-06-25 21:10:24</td>
+                                        <td class="am-text-middle">
+                                            <div class="tpl-table-black-operation">
+                                                <a href="/setting/category/add.html">
+                                                    <i class="am-icon-pencil"></i> 编辑
+                                                </a>
+                                                <a href="javascript:;" class="item-delete tpl-table-black-operation-del" data-id="2">
+                                                    <i class="am-icon-trash"></i> 删除
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr> -->
+                                  
+                                </table>
+                            </div>
+                            <div class="am-u-lg-12 am-cf">
+                                <div class="am-fr"><ul id="nav-pagination" class="pagination"></ul> </div>
+                                    <div class="am-fr pagination-total am-margin-right">
+                                        <div class="am-vertical-align-middle all-total"></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 内容区域 end -->
+
+</div>
+<script id="dispatch-table-tpl" type="text/html">
+    {{each rowDatas  da i}}
+    <tr data-id="{{da.deliveryId}}">
+        <td class="am-text-middle">{{da.deliveryId}}</td>
+        <td class="am-text-middle">{{da.name}}</td>
+        <td class="am-text-middle">{{da.method}}</td>
+        <td class="am-text-middle">{{da.sort}}</td>
+        <td class="am-text-middle">{{da.createTime}}</td>
+        <td class="am-text-middle">
+            <div class="tpl-table-black-operation">
+                <a href="/setting/dispatch/add.html">
+                    <i class="am-icon-pencil"></i> 编辑
+                </a>
+                <a href="javascript:;" class="item-delete tpl-table-black-operation-del" data-id="2">
+                    <i class="am-icon-trash"></i> 删除
+                </a>
+            </div>
+        </td>
+    </tr>
+    {{/each}}
+</script>
+<script src="/assets/layer/layer.js"></script>
+<script src="/assets/public/js/site-ajax.js"></script>
+<script src="/assets/store/js/jquery.form.min.js"></script>
+<script src="/assets/store/js/amazeui.min.js"></script>
+<script src="/assets/store/js/webuploader.html5only.js"></script>
+<script src="/assets/store/js/art-template.js"></script>
+<script src="/assets/store/js/app.js"></script>
+<script src="/assets/store/js/file.library.js"></script>
+<script>
+    var bodyConfig = {
+        active:6,
+        bodyTitle:'设置',
+        bodyList:[{
+            title:'商场设置',
+            active:false,
+            url:'/setting/index.html'
+        },{
+            title:'交易设置',
+            active:false,
+            url:'/setting/trade.html'
+        },{
+            title:'配送设置',
+            active:true,
+            url:'/setting/dispatch.html'
+        },{
+            title:'短信通知',
+            active:false,
+            url:'/setting/message.html'
+        },{
+            title:'上传设置',
+            active:false,
+            url:'/setting/upload.html'
+        }]
+    }
+</script>
+<script src="/assets/store/js/common.js"></script>
+<script src="/assets/public/jquery/page/jquery.twbsPagination.min.js"></script>
+<script src="/assets/setting/dispatch.js"></script>
+</body>
+
+</html>
+
+
+
+
+

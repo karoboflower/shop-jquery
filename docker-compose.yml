@@ -1,0 +1,17 @@
+version: '2'
+services:
+
+  tmall-h5:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    networks:
+    - new
+    container_name: tmall-h5
+    image: tmall-h5
+    ports:
+      - 6004:6004
+
+
+networks:
+  new:

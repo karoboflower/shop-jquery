@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Tmall</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/assets/store/i/favicon.ico" />
+    <meta name="apple-mobile-web-app-title" content="<?= $setting['store']['values']['name'] ?>" />
+    <link rel="stylesheet" href="/assets/store/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/assets/store/css/app.css" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_783249_t6knt0guzo.css">
+    <link rel="stylesheet" href="/assets/public/css/base.css">
+    <script src="/assets/store/js/jquery.min.js"></script>
+</head>
+
+<body data-type="">
+    <div class="am-g tpl-g">
+        <!-- 头部 -->
+        <header id="header" class="tpl-header">
+
+        </header>
+        <div id="left">
+
+        </div>
+        <!-- 内容区域 start -->
+        <div class="tpl-content-wrapper ">
+            <div class="row-content am-cf">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-cf">出售中的商品</div>
+                            </div>
+                            <div class="widget-body am-fr">
+                                <!-- 工具栏 -->
+                                <div class="page_toolbar am-margin-bottom-xs am-cf">
+                                    <form class="toolbar-form" action="">
+                                        <input type="hidden" name="s" value="/store/goods/index">
+                                        <div class="am-u-sm-12 am-u-md-3">
+                                            <div class="am-form-group">
+                                                <div class="am-btn-group am-btn-group-xs">
+                                                    <a class="am-btn am-btn-default am-btn-success"
+                                                        href="/goods/add.html">
+                                                        <span class="am-icon-plus"></span> 新增
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="am-u-sm-12 am-u-md-9">
+                                            <div class="am fr">
+                                                <div class="am-form-group am-fl">
+                                                        <select id="typeDetails"  data-am-selected="{searchBox: 1, btnSize: 'sm',placeholder: '商品分类'}" style="display: none;">
+                                               
+                                                            </select>
+                                                </div>
+                                                <div class="am-form-group am-fl">
+                                                        <select id="currentTypes" data-am-selected="{ btnSize: 'sm',placeholder: '商品状态'}" style="display: none;">
+                                                            <option value=""></option>
+                                                                <option value="10">上架</option>
+                                                                <option value="20">下架</option>
+                                                            </select>
+                                                </div>
+                                                <div class="am-form-group am-fl">
+                                                    <div class="am-input-group am-input-group-sm tpl-form-border-form">
+                                                        <input type="text" id="searchText" class="am-form-field" name="goods_name"
+                                                            style="padding-left: 8px;" placeholder="请输入商品名称" value="">
+                                                        <div class="am-input-group-btn">
+                                                            <button class="am-btn am-btn-default am-icon-search"
+                                                                type="button" id="searchGoods"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="am-scrollable-horizontal am-u-sm-12">
+                                    <table width="100%" class="am-table am-table-compact am-table-striped
+                         tpl-table-black am-text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>商品ID</th>
+                                                <th>商品图片</th>
+                                                <th>商品名称</th>
+                                                <th>商品分类</th>
+                                                <th>实际销量</th>
+                                                <th>商品排序</th>
+                                                <th>商品状态</th>
+                                                <th>添加时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="goodLists">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="am-u-lg-12 am-cf">
+                                    <div class="am-fr"><ul id="nav-pagination" class="pagination"></ul> </div>
+                                        <div class="am-fr pagination-total am-margin-right">
+                                            <div class="am-vertical-align-middle all-total"></div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- 内容区域 end -->
+
+    </div>
+    <script id="good-list-tpl" type="text/html">
+    {{each rowDatas  da i}}
+    <tr data-spu-id="{{da.spuId}}"><td class="am-text-middle">{{da.spuId}}</td>
+    <td class="am-text-middle">
+        {{if da.goodsUploadFiles}}
+        <img src="/file/show/{{da.goodsUploadFiles[0].fileId}}" width="120" height="120">
+        {{else}}
+        <img src="/assets/public/images/noimage.jpg" class='img-show'>
+        {{/if}}
+    </td>
+    <td class="am-text-middle">{{da.goodsName}}</td>
+    <td class="am-text-middle">{{da.categoryName}}</td>
+    <td class="am-text-middle">{{da.salesActual}}</td>
+    <td class="am-text-middle">{{da.goodsSort}}</td>
+    <td class="am-text-middle">
+        {{if da.goodsStatus===10}}
+        <span class="j-state am-badge x-cur-p am-badge-success">上架</span>
+        {{else}}
+        <span class="j-state am-badge x-cur-p am-badge-success">上架</span>
+        {{/if}}
+    </td>
+    <td class="am-text-middle">{{da.createTime}}</td>
+    <td class="am-text-middle">
+            <div class="tpl-table-black-operation">
+                    <a href="/goods/edit.html?id={{da.spuId}}">
+                        <i class="am-icon-pencil"></i> 编辑
+                    </a>
+                    <a href="javascript:;" class="item-delete tpl-table-black-operation-del">
+                        <i class="am-icon-trash"></i> 删除
+                    </a>
+
+                </div></td>
+</tr>
+    {{/each}}
+    </script>
+    <script id="type-list-tpl" type="text/html">
+        {{each rowDatas  da i}}
+        <li class="" data-index="{{da.sort}}" data-group="da.parentId"
+        data-image="{{da.imageId}}"> <span
+            class="am-selected-text">{{da.name}}</span> <i
+            class="am-icon-check"></i></li>
+        {{/each}}
+    </script>
+    <script src="/assets/layer/layer.js"></script>
+    <script src="/assets/store/js/jquery.form.min.js"></script>
+    <script src="/assets/store/js/amazeui.min.js"></script>
+    <script src="/assets/public/js/site-ajax.js"></script>
+    <script src="/assets/store/js/webuploader.html5only.js"></script>
+    <script src="/assets/store/js/art-template.js"></script>
+    <script src="/assets/store/js/app.js"></script>
+    <script src="/assets/store/js/file.library.js"></script>
+    <script>
+        var bodyConfig = {
+            active: 1,
+            bodyTitle: '商品管理',
+            bodyList: [{
+                title: '商品列表',
+                active: true,
+                url: '/goods/index.html'
+            }, {
+                title: '商品分类',
+                active: false,
+                url: '/goods/type.html'
+            }]
+        }
+    </script>
+    <script src="/assets/store/js/common.js"></script>
+    <script src="/assets/public/jquery/page/jquery.twbsPagination.min.js"></script>
+    <script src="/assets/goods/index.js"></script>
+</body>
+
+</html>

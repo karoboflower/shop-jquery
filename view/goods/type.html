@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Tmall</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/assets/store/i/favicon.ico" />
+    <meta name="apple-mobile-web-app-title" content="<?= $setting['store']['values']['name'] ?>" />
+    <link rel="stylesheet" href="/assets/store/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/assets/store/css/app.css" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_783249_t6knt0guzo.css">
+    <script src="/assets/store/js/jquery.min.js"></script>
+</head>
+<script>
+
+</script>
+
+<body data-type="">
+    <div class="am-g tpl-g">
+        <!-- 头部 -->
+        <header id="header" class="tpl-header">
+
+        </header>
+        <div id="left">
+
+        </div>
+        <!-- 内容区域 start -->
+        <div class="tpl-content-wrapper ">
+            <div class="row-content am-cf">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-cf">商品分类</div>
+                            </div>
+                            <div class="widget-body am-fr">
+                                <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                    <div class="am-form-group">
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <a class="am-btn am-btn-default am-btn-success am-radius"
+                                                    href="/goods/category/addType.html">
+                                                    <span class="am-icon-plus"></span> 新增
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="am-u-sm-12">
+                                    <table width="100%"
+                                        class="am-table am-table-compact am-table-striped tpl-table-black ">
+                                        <thead>
+                                            <tr>
+                                                <th>分类ID</th>
+                                                <th>分类名称</th>
+                                                <th>分类排序</th>
+                                                <th>添加时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="typeDetails">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="am-u-lg-12 am-cf">
+                                        <div class="am-fr"><ul id="nav-pagination" class="pagination"></ul> </div>
+                                            <div class="am-fr pagination-total am-margin-right">
+                                                <div class="am-vertical-align-middle all-total"></div>
+                                            </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- 内容区域 end -->
+        <script id="type-list-tpl" type="text/html">
+        {{each rowDatas  da i}}
+        <tr data-id="{{da.id}}" data-parent-id="{{da.parentId}}">
+        <td class="am-text-middle">{{da.id}}</td>
+        <td class="am-text-middle">
+                {{da.name}}
+        </td>
+        <td class="am-text-middle">{{da.sort}}</td>
+        <td class="am-text-middle">
+                {{da.createTime}}
+        </td>
+        <td class="am-text-middle"><div class="tpl-table-black-operation">
+                <a href="/goods/category/edit.html?id={{da.id}}">
+                    <i class="am-icon-pencil"></i> 编辑
+                </a>
+                <a href="javascript:;" class="item-delete tpl-table-black-operation-del" data-id="1">
+                    <i class="am-icon-trash"></i> 删除
+                </a>
+            </div></td>
+      
+    </tr>
+        {{/each}}
+        </script>
+        <script id="detail-list-tpl" type="text/html">
+            <div style="margin:20px;">
+        <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
+            <tbody>
+                <tr>
+                    <td class="am-text-middle">分类ID</td>
+                    <td class="am-text-middle">{{da.categoryId}}</td>
+                </tr>
+                <tr>
+                    <td class="am-text-middle">分类名称</td>
+                    <td class="am-text-middle">{{da.name}}</td>
+                </tr>
+                <tr>
+                    <td class="am-text-middle">分类图片</td>
+                    <td class="am-text-middle">
+                       <img class="show-image" src="/file/show/{{da.imageId}}" width="120" height="120">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="am-text-middle">分类序号</td>
+                    <td class="am-text-middle">{{da.sort}}</td>
+                </tr>
+                <tr>
+                    <td class="am-text-middle">创建时间</td>
+                    <td class="am-text-middle">{{da.createTime}}</td>
+                </tr>
+                <tr>
+                    <td class="am-text-middle">更新时间</td>
+                    <td class="am-text-middle">{{da.updateTime}}</td>
+                </tr>
+                <tr>
+                        <td class="am-text-middle">父类ID
+                        </td>
+                        <td class="am-text-middle">{{da.parentId}}</td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+        </script>
+    </div>
+    <script src="/assets/layer/layer.js"></script>
+    <script src="/assets/public/js/site-ajax.js"></script>
+    <script src="/assets/store/js/jquery.form.min.js"></script>
+    <script src="/assets/store/js/amazeui.min.js"></script>
+    <script src="/assets/store/js/webuploader.html5only.js"></script>
+    <script src="/assets/store/js/art-template.js"></script>
+    <script src="/assets/store/js/app.js"></script>
+    <script src="/assets/store/js/file.library.js"></script>
+    <script>
+        var bodyConfig = {
+            active: 1,
+            bodyTitle: '商品管理',
+            bodyList: [{
+                title: '商品列表',
+                active: false,
+                url: '/goods/index.html'
+            }, {
+                title: '商品分类',
+                active: true,
+                url: '/goods/type.html'
+            }]
+        }
+    </script>
+    <script src="/assets/store/js/common.js"></script>
+    
+    <script src="/assets/public/jquery/page/jquery.twbsPagination.min.js"></script>
+    <script src="/assets/goods/type.js"></script>
+</body>
+
+</html>

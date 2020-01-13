@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Tmall</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="/assets/store/i/favicon.ico"/>
+    <meta name="apple-mobile-web-app-title" content="<?= $setting['store']['values']['name'] ?>"/>
+    <link rel="stylesheet" href="/assets/store/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/assets/store/css/app.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_783249_t6knt0guzo.css">
+    <script src="/assets/store/js/jquery.min.js"></script>
+</head>
+
+<body data-type="">
+<div class="am-g tpl-g">
+    <!-- 头部 -->
+    <header id="header" class="tpl-header">
+
+    </header >
+    <div id="left">
+
+    </div>
+    <!-- 内容区域 start -->
+    <div class="tpl-content-wrapper ">
+        <div class="row-content am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <form id="my-form" class="am-form tpl-form-line-form" enctype="multipart/form-data" method="post" novalidate="novalidate">
+                            <div class="widget-body">
+                                <fieldset>
+                                    <div class="widget-head am-cf">
+                                        <div class="widget-title am-fl">短信通知（ 阿里云短信 )</div>
+                                    </div>
+                                    <input type="hidden" name="sms[default]" value="aliyun">
+                                    <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label form-require"> AccessKeyId </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" name="sms[engine][aliyun][AccessKeyId]" value="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label form-require"> AccessKeySecret </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" name="sms[engine][aliyun][AccessKeySecret]" value="" required="">
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label form-require"> 短信签名 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" name="sms[engine][aliyun][sign]" value="萤火科技" required="">
+                                        </div>
+                                    </div>
+                                    <div class="widget-head am-cf">
+                                        <div class="widget-title am-fl">新付款订单提醒</div>
+                                    </div>
+                                    <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label form-require">
+                                            是否开启短信提醒
+                                        </label>
+                                        <div class="am-u-sm-9">
+                                            <label class="am-radio-inline">
+                                                <input type="radio" name="sms[engine][aliyun][order_pay][is_enable]" value="1" data-am-ucheck="" required="" class="am-ucheck-radio"><span class="am-ucheck-icons"><i class="am-icon-unchecked"></i><i class="am-icon-checked"></i></span>
+                                                开启
+                                            </label>
+                                            <label class="am-radio-inline">
+                                                <input type="radio" name="sms[engine][aliyun][order_pay][is_enable]" value="0" data-am-ucheck="" checked="" class="am-ucheck-radio"><span class="am-ucheck-icons"><i class="am-icon-unchecked"></i><i class="am-icon-checked"></i></span>
+                                                关闭
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label form-require">
+                                            模板ID <span class="tpl-form-line-small-title">Template Code</span>
+                                        </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" name="sms[engine][aliyun][order_pay][template_code]" value="">
+                                            <small>例如：SMS_139800030</small>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">
+                                        <div class="am-u-sm-9 am-u-sm-push-3">
+                                            <small>模板内容：您有一条新订单，订单号为：${order_no}，请注意查看。</small>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label form-require"> 接收手机号 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" name="sms[engine][aliyun][order_pay][accept_phone]" value="">
+                                            <div class="help-block">
+                                                <small>接收测试： <a class="j-sendTestMsg" data-msg-type="order_pay" href="javascript:void(0);">点击发送</a>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">
+                                        <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
+                                            <button type="submit" class="j-submit am-btn am-btn-secondary">提交
+                                            </button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 内容区域 end -->
+
+</div>
+<script src="/assets/layer/layer.js"></script>
+<script src="/assets/store/js/jquery.form.min.js"></script>
+<script src="/assets/store/js/amazeui.min.js"></script>
+<script src="/assets/store/js/webuploader.html5only.js"></script>
+<script src="/assets/store/js/art-template.js"></script>
+<script src="/assets/store/js/app.js"></script>
+<script src="/assets/store/js/file.library.js"></script>
+<script>
+    var bodyConfig = {
+        active:6,
+        bodyTitle:'设置',
+        bodyList:[{
+            title:'商场设置',
+            active:false,
+            url:'/setting/index.html'
+        },{
+            title:'交易设置',
+            active:false,
+            url:'/setting/trade.html'
+        },{
+            title:'配送设置',
+            active:false,
+            url:'/setting/dispatch.html'
+        },{
+            title:'短信通知',
+            active:true,
+            url:'/setting/message.html'
+        },{
+            title:'上传设置',
+            active:false,
+            url:'/setting/upload.html'
+        }]
+    }
+</script>
+<script src="/assets/store/js/common.js"></script>
+</body>
+
+</html>
+
+
+
+
+

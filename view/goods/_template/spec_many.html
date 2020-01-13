@@ -1,0 +1,77 @@
+
+<!-- 商品规格属性模板 -->
+<script id="tpl_spec_attr" type="text/template">
+    {{ each spec_attr da i}}
+    <div class="spec-group-item" data-index="{{i}}" data-group-id="{{ da.specId }}" data-group-name="{{da.group_name}}" >
+        <div class="spec-group-name">
+            <span>{{ da.specName }}</span>
+            <i class="spec-group-delete iconfont icon-shanchu1" title="点击删除"></i>
+        </div>
+        <div class="spec-list am-cf">
+            {{ each da.specValues item key }}
+            <div class="spec-item am-fl" data-id="{{item.specValueId}}" data-item-index="{{ key }}">
+                <span>{{ item.specValue  }}</span>
+                <i class="spec-item-delete iconfont icon-shanchu1" title="点击删除"></i>
+            </div>
+            {{ /each }}
+            <div class="spec-item-add am-cf am-fl">
+                <input type="text" class="ipt-specItem am-fl am-field-valid">
+                <button type="button" class="btn-addSpecItem am-btn am-fl">添加</button>
+            </div>
+        </div>
+    </div>
+    {{ /each }}
+</script>
+
+<!-- 商品规格table模板 -->
+<script id="tpl_spec_table" type="text/template">
+    <tbody>
+    <tr>
+        {{ each spec_attr da i }}
+        <th>{{ da.specName }}</th>
+        {{ /each }}
+        <th>规格图片</th>
+        <th>商家编码</th>
+        <th>销售价</th>
+        <th>划线价</th>
+        <th>库存</th>
+        <th>重量(kg)</th>
+    </tr>
+    {{ each spec_list item key }}
+    <tr data-index="{{ key }}" data-sku-id="{{ item.spec_sku_id }}">
+        {{ each item.rows td itemKey }}
+        <td class="td-spec-value am-text-middle" rowspan="{{ td.rowspan }}">
+            {{ td.spec_value }}
+        </td>
+        {{ /each }}
+        <td class="am-text-middle spec-image">
+            <div data-index="0" class="j-selectImg data-image">
+                {{if item.form.fileId}}
+                <img src="/file/show/{{item.form.fileId}}" alt=""> <i class="iconfont icon-shanchu image-delete"></i>
+                {{else}}
+                <i class="iconfont icon-add"></i></div></td>
+                {{/if}}
+              
+               
+        <td>
+            <input type="text" name="goodsNo" value="{{ item.form.goodsNo }}" class="ipt-goods-no am-field-valid">
+        </td>
+        <td>
+            <input type="number" name="goodsPrice" value="{{ item.form.goodsPrice }}" class="am-field-valid ipt-w80"
+                   required>
+        </td>
+        <td>
+            <input type="number" name="linePrice" value="{{ item.form.linePrice }}" class="am-field-valid ipt-w80">
+        </td>
+        <td>
+            <input type="number" name="stockNum" value="{{ item.form.stockNum }}" class="am-field-valid ipt-w80"
+                   required>
+        </td>
+        <td>
+            <input type="number" name="goodsWeight" value="{{ item.form.goodsWeight }}" class="am-field-valid ipt-w80"
+                   required>
+        </td>
+    </tr>
+    {{ /each }}
+    </tbody>
+</script>
